@@ -11,11 +11,12 @@ struct Home: View {
     // View Properties
     @State private var activeTab: Tab = .photo
     // All Tab's
-    @State private var allTabs:[AnimatedTab] = Tab.allCases.compactMap { tab -> AnimatedTab? in
+    @State private var allTabs: [AnimatedTab] = Tab.allCases.compactMap { tab -> AnimatedTab? in
         return .init(tab: tab)
     }
     // Bounce Property
     @State private var bouncesDown: Bool = false
+    @State private var color: Color = Tab.photo.color
     
     var body: some View {
         VStack(spacing: 0) {
@@ -23,40 +24,60 @@ struct Home: View {
                 //Tab View
                 //1
                 NavigationStack {
-                    VStack {
+                    ZStack {
+                        color.opacity(0.1).ignoresSafeArea()
                         
+                        VStack {
+                            
+                        }
                     }
                     .navigationTitle(Tab.photo.title)
                 }
                 .setUpTab(.photo)
                 //2
                 NavigationStack {
-                    VStack {
+                    ZStack {
+                        color.opacity(0.1).ignoresSafeArea()
                         
+                        VStack {
+                            
+                        }
                     }
                     .navigationTitle(Tab.chat.title)
                 }
                 .setUpTab(.chat)
                 //3
                 NavigationStack {
-                    VStack {
+                    ZStack {
+                        color.opacity(0.1).ignoresSafeArea()
                         
+                        VStack {
+                            
+                        }
                     }
                     .navigationTitle(Tab.apps.title)
                 }
                 .setUpTab(.apps)
                 //4
                 NavigationStack {
-                    VStack {
+                    ZStack {
+                        color.opacity(0.1).ignoresSafeArea()
                         
+                        VStack {
+                            
+                        }
                     }
                     .navigationTitle(Tab.notifications.title)
                 }
                 .setUpTab(.notifications)
                 //5
                 NavigationStack {
-                    VStack {
+                    ZStack {
+                        color.opacity(0.1).ignoresSafeArea()
                         
+                        VStack {
+                            
+                        }
                     }
                     .navigationTitle(Tab.profile.title)
                 }
@@ -73,6 +94,7 @@ struct Home: View {
             .pickerStyle(.segmented)
             .padding(.horizontal, 15)
             .padding(.bottom, 20)
+            .background(color.opacity(0.1))
             
             CustomTabBar()
         }
@@ -101,6 +123,7 @@ struct Home: View {
                 .onTapGesture {
                     withAnimation(.bouncy, completionCriteria: .logicallyComplete) {
                         activeTab = tab
+                        color = tab.color
                         animatedTab.isAnimating = true
                     } completion: {
                         var transaction = Transaction()
@@ -112,7 +135,8 @@ struct Home: View {
                 }
             }
         }
-        .background(.bar)
+        .background(color.opacity(0.1))
+//        .background(.bar)
     }
     
 }

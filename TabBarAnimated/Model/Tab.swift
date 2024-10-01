@@ -29,6 +29,21 @@ enum Tab: String, CaseIterable {
             "Profile"
         }
     }
+    
+    var color: Color {
+        switch self {
+        case .photo:
+                .red
+        case .chat:
+                .blue
+        case .apps:
+                .brown
+        case .notifications:
+                .green
+        case .profile:
+                .yellow
+        }
+    }
 }
 
 // Animated SF Tab Model
